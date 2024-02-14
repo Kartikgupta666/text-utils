@@ -38,7 +38,7 @@ export default function Textform(props) {
     const handlecopy = async () => {
         try {
             await navigator.clipboard.writeText(text);
-            props.showAlert("Text copied to clipboard!", " success");
+            props.showAlert("Text copied to clipboard!", "success");
 
         } catch (err) {
             console.error('Unable to copy text to clipboard:', err);
