@@ -9,13 +9,16 @@ import React, { useState } from 'react'
 function App() {
 
   const [mode, setMode] = useState('light')
-  const [alert, setAlert] = useState( null)
+  const [alert, setAlert] = useState(null)
 
   const showAlert = (message, type) => {
     setAlert({
       msg: message,
       types: type
     })
+    setTimeout(() => {
+      setAlert(null);
+    }, 1000);
   }
 
   const toggelmode = () => {
@@ -38,7 +41,7 @@ function App() {
       <Navbar mode={mode} toggelmode={toggelmode} />
       <Alert alert={alert} />
       <div className="container my-3">
-        <Textform mode={mode} heading="Enter the text to analyse below" />
+        <Textform mode={mode} showAlert={showAlert} heading="Enter the text to analyse below" />
       </div>
     </>
   );
