@@ -4,12 +4,8 @@ import Navbar from './component/Navbar';
 import Textform from './component/Textform';
 import Alert from './component/Alert';
 import React, { useState } from 'react'
-import About from './component/About';
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-} from "react-router-dom";
+// import About from './component/About';
+
 
 function App() {
 
@@ -43,19 +39,19 @@ function App() {
 
   return (
     <>
-      <Router>
+      {/* <Router> */}
         <Navbar mode={mode} toggelmode={toggelmode} />
         <Alert alert={alert} />
         <div className="container my-3">
-          <Routes>
+          {/* <Routes> */}
 {/* exact path is used to match exact file path and react do partial matching thats why we used this {exact path} keyword */}
-            <Route exact path="/" element={<Textform mode={mode} showAlert={showAlert} heading="Enter the text to analyse below" />} />
+            <Textform mode={mode} showAlert={showAlert} heading="Enter the text to analyse below" />
 
-            <Route exact path='/about' element={<About />} />
+            {/* <Route exact path='/about' element={<About />} /> */}
 
-          </Routes>
+          {/* </Routes> */}
         </div>
-      </Router>
+      {/* </Router> */}
 
     </>
   );

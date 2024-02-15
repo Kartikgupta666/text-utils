@@ -10,7 +10,7 @@ export default function Textform(props) {
 
         let newtext = text.toUpperCase();
         setText(newtext);
-        props.showAlert("Converted to UpperCase", " success");
+        props.showAlert("Converted to UpperCase", "success");
     }
     // onclick to change the text upper case to lower case
 
@@ -18,7 +18,7 @@ export default function Textform(props) {
 
         let newtext = text.toLowerCase();
         setText(newtext);
-        props.showAlert("Converted to LowerCase", " success");
+        props.showAlert("Converted to LowerCase", "success");
 
     }
     // handel changes on text area during typing
@@ -31,7 +31,7 @@ export default function Textform(props) {
     const clear = () => {
 
         setText(' ');
-        props.showAlert("Text cleared", " success");
+        props.showAlert("Text cleared", "success");
 
     }
     // copy function
@@ -40,31 +40,68 @@ export default function Textform(props) {
             await navigator.clipboard.writeText(text);
             props.showAlert("Text copied to clipboard!", "success");
 
-        } catch (err) {
+            setText(' ');
+        }
+        catch (err) {
             console.error('Unable to copy text to clipboard:', err);
+            props.showAlert('Unable to copy text to clipboard:', 'danger');
+
         }
     }
+
+    // cut 
+
+    // const cut = async () => {
+    //     try {
+    //         await navigator.clipboard.writeText(text);
+    //         props.showAlert("Text copied to clipboard!", "success");
+
+
+    //     } catch (err) {
+    //         console.error('Unable to copy text to clipboard:', err);
+    //     }
+    // }
 
     // remove extra space 
 
     const removespace = () => {
         let newtext = text.split(/[ ]+/);
-        setText(newtext.join(" "));
-        props.showAlert("Extraspaces removed from the text", " success");
+        setText(newtext.join(""));
+        props.showAlert("Extraspaces removed from the text", "success");
 
     }
 
     // Underline under text
 
     const underline = () => {
-        let newtext = document.getElementById("mybox");
+        let newtext = document.getElementById("myBox");
+
+
         if (newtext.style.textDecoration) {
             newtext.style.removeProperty('text-decoration');
-          } else {
+            props.showAlert('Underline removed from the text', 'warning')
+        } else {
             newtext.style.setProperty('text-decoration', 'underline');
-          }
-}
+            props.showAlert('Text underlined successfully', 'success')
+        }
+    }
 
+    //  cross
+
+    const crossthrough = () => {
+        let newtext = document.getElementById("myBox");
+        if (newtext.style.textDecoration) {
+            newtext.style.removeProperty('text-decoration');
+            props.showAlert('cross removed', 'warning');
+        }
+        else {
+            newtext.style.setProperty('text-decoration', 'line-through');
+            props.showAlert('cross applied on the text', 'success');
+        }
+    }
+
+    const textArray = text.trim().split(" ")
+    const Text = textArray[textArray.length - 1] === "" ? textArray.length - 1 : textArray.length
 
     return (
         <>
@@ -73,7 +110,7 @@ export default function Textform(props) {
                 <div>
                     <h1>{props.heading}</h1>
 
-                    <div className="mb-3"  >
+                    <div className="mb-3" >
 
                         <textarea className="form-control" value={text} onChange={handelchange} id="myBox" rows="8" style={{ backgroundColor: props.mode === 'light' ? 'white' : 'grey', color: props.mode === 'dark' ? 'white' : 'black' }}></textarea>
                         <br />
@@ -84,18 +121,20 @@ export default function Textform(props) {
                         <button type='button' className="btn btn-primary mx-2" onClick={clear} >Clear</button>
                         <button type='button' className="btn btn-primary mx-2" onClick={handlecopy} >Copy</button>
                         <button type='button' className="btn btn-primary mx-2" onClick={underline} >Underline</button>
+                        <button type='button' className="btn btn-primary mx-2" onClick={crossthrough} >Cross</button>
+                        {/* <button type='button' className="btn btn-primary mx-2" onClick={cut} >Cut</button> */}
 
 
 
                     </div>
 
                 </div >
-                <div className="container mt-3" >
+                <div className="container mt-3">
                     <h1>your text summary</h1>
-                    <p>{text.split(" ").length} words and {text.length} characters</p>
+                    <p>{Text} words and {text.trim().length} characters</p>
                     <p>{0.008 * text.split("").length} minutes to read this </p>
                     <h2>Preview</h2>
-                    <textarea className="form-control" value={text} onChange={handelchange} id="myBox" rows="8" style={{ backgroundColor: props.mode === 'light' ? 'white' : 'grey', color: props.mode === 'dark' ? 'white' : 'black' }} disabled></textarea>
+                    <p>{text.length > 0 ? text.trim() : "There's no text to show!!"}</p>
 
                 </div>
 
