@@ -53,6 +53,19 @@ export default function Textform(props) {
         props.showAlert("Extraspaces removed from the text", " success");
 
     }
+
+    // Underline under text
+
+    const underline = () => {
+        let newtext = document.getElementById("mybox");
+        if (newtext.style.textDecoration) {
+            newtext.style.removeProperty('text-decoration');
+          } else {
+            newtext.style.setProperty('text-decoration', 'underline');
+          }
+}
+
+
     return (
         <>
             <div style={{ color: props.mode === 'dark' ? 'white' : 'black' }} >
@@ -70,6 +83,7 @@ export default function Textform(props) {
                         <button type='button' className="btn btn-primary mx-2" onClick={removespace} >Remove Space</button>
                         <button type='button' className="btn btn-primary mx-2" onClick={clear} >Clear</button>
                         <button type='button' className="btn btn-primary mx-2" onClick={handlecopy} >Copy</button>
+                        <button type='button' className="btn btn-primary mx-2" onClick={underline} >Underline</button>
 
 
 

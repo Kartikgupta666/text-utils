@@ -31,12 +31,12 @@ function App() {
       setMode('dark');
       document.body.style.backgroundColor = '#3a3c3e';
       document.body.style.textColor = '#FFF';
-      showAlert("Dark mode has been enabled", " success");
+      showAlert("Dark mode has been enabled","success");
     }
     else {
       setMode('light');
       document.body.style.backgroundColor = '#FFF';
-      showAlert("Light mode has been enabled", " success");
+      showAlert("Light mode has been enabled","success");
 
     }
   }
