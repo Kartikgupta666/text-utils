@@ -114,7 +114,7 @@ export default function Textform(props) {
 
                         <textarea className="form-control" value={text} onChange={handelchange} id="myBox" rows="8" style={{ backgroundColor: props.mode === 'light' ? 'white' : 'grey', color: props.mode === 'dark' ? 'white' : 'black' }}></textarea>
                         <br />
-                        <div>
+                        <div className='my-2'>
                             <button type='button' className="btn btn-primary mx-2 " onClick={handelupclick} >Convert to Uppercase</button>
                             <button type='button' className="btn btn-primary mx-2" onClick={handeldnclick} >Convert to Lowercase</button>
                             <button type='button' className="btn btn-primary mx-2" onClick={removespace} >Remove Space</button>
